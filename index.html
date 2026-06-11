@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Spot My Stayy | Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <button class="hamburger" id="hamburger" aria-label="Menu"><i class="fas fa-bars"></i></button>
+        <div class="logo">
+            <img src="logo1.png" alt="Spot My Stayy Logo" class="logo-img">
+            
+        </div>
+        <div class="nav-links" id="navLinks">
+            <a href="index.html" class="nav-link active"><i class="fas fa-home"></i> Home</a>
+            <a href="about.html" class="nav-link"><i class="fas fa-info-circle"></i> About</a>
+            <a href="dashboard.html" class="nav-link" id="dashboard-link" style="display: none;"><i
+                    class="fas fa-chart-line"></i> Dashboard</a>
+            <a href="admin.html" class="nav-link" id="admin-link" style="display: none;"><i
+                    class="fas fa-user-shield"></i> Admin</a>
+            <a href="chat.html" class="nav-link" id="chat-link" style="display: none;"><i class="fas fa-comments"></i>
+                Chats</a>
+            <div class="nav-right">
+                <button id="list-property-btn" class="btn-primary"><i class="fas fa-plus-circle"></i> List
+                    Property</button>
+                <button id="logout-btn" class="btn-outline" style="display: none;"><i class="fas fa-sign-out-alt"></i>
+                    Logout</button>
+                <span id="user-display" class="user-guest"></span>
+                <button id="theme-toggle" class="theme-btn"><i class="fas fa-moon"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="section">
+        <div class="hero">
+            <h1>Find your <span class="gradient-text">perfect stay</span> in Guwahati</h1>
+            <p>Rent houses, rooms, apartments & hotels — simple, fast, reliable.</p>
+        </div>
+
+        <div class="filter-bar">
+            <div class="filter-group"><label>💰 Price</label><select id="filter-price">
+                    <option value="0-10000">Any</option>
+                    <option value="0-5000">Under ₹5k</option>
+                    <option value="5000-10000">₹5k–10k</option>
+                    <option value="10000-20000">₹10k–20k</option>
+                    <option value="20000-50000">₹20k+</option>
+                </select></div>
+            <div class="filter-group"><label>🏢 Type</label><select id="filter-type">
+                    <option value="all">All</option>
+                    <option value="house">House</option>
+                    <option value="room">Room</option>
+                    <option value="apartment">Apartment</option>
+                    <option value="hotel">Hotel</option>
+                </select></div>
+            <div class="filter-group"><label>📍 Location</label>
+                <input type="text" id="filter-location" placeholder="e.g., Guwahati, Dibrugarh, Jorhat"
+                    autocomplete="off" spellcheck="false">
+                <div id="location-suggestions" class="location-suggestions"></div>
+            </div>
+            <div class="filter-group"><label>📐 BHK</label><select id="filter-bhk">
+                    <option value="all">Any</option>
+                    <option value="1">1 BHK</option>
+                    <option value="2">2 BHK</option>
+                    <option value="3">3 BHK</option>
+                    <option value="4">4+ BHK</option>
+                </select></div>
+            <div class="filter-group"><label>👥 Gender</label><select id="filter-gender">
+                    <option value="all">Anyone</option>
+                    <option value="boys">Boys only</option>
+                    <option value="girls">Girls only</option>
+                </select></div>
+            <button id="apply-filters" class="btn-primary">Filter</button>
+        </div>
+
+        <div id="property-list" class="property-grid">
+            <div class="loader"><i class="fas fa-spinner fa-pulse"></i> Loading...</div>
+        </div>
+    </main>
+
+    <!-- Modal: List Property (compact, scrollable) -->
+    <div id="property-modal" class="modal">
+        <div class="modal-content compact-modal">
+            <span class="close-modal">&times;</span>
+            <h3>📋 List Your Property</h3>
+            <div id="reg-reminder" class="info-message"
+                style="background: var(--accent-light); padding: 0.5rem; border-radius: 12px; margin-bottom: 0.8rem; font-size: 0.75rem; display: none;">
+                <i class="fas fa-info-circle"></i> <strong>Note:</strong> You must be <strong>logged in</strong> to list
+                a property.
+                <a href="login.html" style="color: var(--accent); font-weight: bold;">Login or Register</a>
+            </div>
+            <form id="property-form" enctype="multipart/form-data">
+                <div class="form-group"><label>Title*</label><input id="prop-title" placeholder="e.g., Cozy 2BHK"
+                        required></div>
+                <div class="form-group"><label>Type*</label><select id="prop-type" required>
+                        <option value="">Select</option>
+                        <option value="house">House</option>
+                        <option value="room">Room</option>
+                        <option value="apartment">Apartment</option>
+                        <option value="hotel">Hotel</option>
+                    </select></div>
+                <div class="form-group"><label>Price (₹/month)*</label><input type="number" id="prop-price" required>
+                </div>
+                <div class="form-group"><label>Location*</label><input id="prop-location" required></div>
+                <div class="form-group"><label>Accommodation*</label><input id="prop-accommodation"
+                        placeholder="e.g., 2BHK, furnished" required></div>
+                <div id="bhk-group" class="form-group" style="display: none;"><label>BHK (for Apartments)</label><select
+                        id="prop-bhk">
+                        <option value="">Select</option>
+                        <option value="1">1 BHK</option>
+                        <option value="2">2 BHK</option>
+                        <option value="3">3 BHK</option>
+                        <option value="4">4+ BHK</option>
+                    </select></div>
+                <div class="form-group"><label>Gender Preference*</label><select id="prop-gender" required>
+                        <option value="">Select</option>
+                        <option value="anyone">Anyone</option>
+                        <option value="boys">Boys only</option>
+                        <option value="girls">Girls only</option>
+                    </select></div>
+                <!-- Owner contact details: name, email, phone -->
+                <div class="form-group"><label>Owner Name*</label><input type="text" id="prop-owner-name"
+                        placeholder="e.g., John Doe" required></div>
+                <div class="form-group"><label>Owner Email*</label><input type="email" id="prop-owner-email"
+                        placeholder="owner@example.com" required></div>
+                <div class="form-group"><label>Owner Phone*</label><input type="tel" id="prop-owner-phone"
+                        placeholder="e.g., 9876543210" required></div>
+                <div class="form-group"><label>Image* (max 10MB)</label><input type="file" id="prop-image"
+                        accept="image/jpeg, image/png, image/webp" required><small>JPG/PNG/WEBP</small></div>
+                <div class="form-group"><label>Latitude (optional)</label><input id="prop-lat"
+                        placeholder="e.g., 26.1445"></div>
+                <div class="form-group"><label>Longitude (optional)</label><input id="prop-lng"
+                        placeholder="e.g., 91.7362"></div>
+                <div class="checkbox-group"><label><input type="checkbox" id="prop-parking">
+                        Parking</label><label><input type="checkbox" id="prop-pet"> Pet</label><label><input
+                            type="checkbox" id="prop-wifi"> WiFi</label></div>
+                <button type="submit" class="btn-primary btn-block">Publish</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal: Rating -->
+    <div id="review-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>⭐ Rate & Review</h3>
+            <input type="hidden" id="review-property-id">
+            <div class="form-group"><label>Rating</label><select id="review-rating">
+                    <option value="5">5 – Excellent</option>
+                    <option value="4">4 – Good</option>
+                    <option value="3">3 – Average</option>
+                    <option value="2">2 – Poor</option>
+                    <option value="1">1 – Terrible</option>
+                </select></div>
+            <div class="form-group"><label>Comment</label><textarea id="review-text" rows="3"></textarea></div>
+            <button id="submit-review" class="btn-primary">Submit</button>
+        </div>
+    </div>
+
+    <footer class="professional-footer">
+        <div class="footer-container">
+            <div class="footer-logo">
+                <img src="logo1.png" alt="Spot My Stayy" class="footer-logo-img">
+                <span>© 2026 Spot My Stayy. All rights reserved.</span>
+            </div>
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="terms.html">Terms</a>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module" src="js/core.js"></script>
+    <script type="module" src="js/main.js"></script>
+
+    <script>
+        (function () {
+            const hamburger = document.getElementById('hamburger');
+            const navLinks = document.getElementById('navLinks');
+            if (!hamburger || !navLinks) return;
+            function closeMenu() { navLinks.classList.remove('active'); document.body.classList.remove('menu-open'); }
+            hamburger.addEventListener('click', function (e) { e.stopPropagation(); navLinks.classList.toggle('active'); document.body.classList.toggle('menu-open'); });
+            document.addEventListener('click', function (event) { if (navLinks.classList.contains('active') && !navLinks.contains(event.target) && !hamburger.contains(event.target)) closeMenu(); });
+            navLinks.addEventListener('click', function (e) { e.stopPropagation(); });
+        })();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Spot My Stayy | About</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="navbar">
+    <button class="hamburger" id="hamburger"><i class="fas fa-bars"></i></button>
+    <div class="logo">
+        <img src="logo1.png" alt="Spot My Stayy Logo" class="logo-img">
+        
+    </div>
+    <div class="nav-links" id="navLinks">
+        <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
+        <a href="about.html" class="nav-link active"><i class="fas fa-info-circle"></i> About</a>
+        <a href="dashboard.html" class="nav-link" id="dashboard-link" style="display: none;"><i class="fas fa-chart-line"></i> Dashboard</a>
+        <a href="admin.html" class="nav-link" id="admin-link" style="display: none;"><i class="fas fa-user-shield"></i> Admin</a>
+        <div class="nav-right">
+            <button id="list-property-btn" class="btn-primary" style="display: none;"><i class="fas fa-plus-circle"></i> List Property</button>
+            <button id="logout-btn" class="btn-outline" style="display: none;"><i class="fas fa-sign-out-alt"></i> Logout</button>
+            <span id="user-display" class="user-guest"></span>
+            <button id="theme-toggle" class="theme-btn"><i class="fas fa-moon"></i></button>
+        </div>
+    </div>
+</nav>
+
+<main>
+    <section class="about-hero">
+        <div class="container">
+            <h1>ABOUT US</h1>
+            <p>SpotMyStayy is a modern accommodation discovery platform created to simplify the process of finding comfortable, affordable, and reliable places to stay. Our platform connects accommodation seekers with property owners through an intuitive and user-friendly interface, making the search experience faster and more efficient. Whether users are looking for rental homes, hostels, paying guest accommodations, apartments, or short-term stays, SpotMyStayy provides access to a wide range of listings along with detailed property information, images, location details, and essential amenities. By bringing all relevant information together in one place, we help users make informed decisions and find accommodations that best match their needs and preferences.</p>
+            <p style="margin-top: 1rem;">At SpotMyStayy, we believe that finding the right place to stay should be simple, transparent, and stress-free. Our goal is to enhance the accommodation search experience by offering a reliable platform that promotes trust, accessibility, and convenience. Through the use of modern web technologies and a customer-focused approach, we strive to create meaningful connections between users and property owners. As we continue to grow and improve, our vision is to become a trusted destination for accommodation discovery, helping people find not just a place to stay, but a place they can truly call home.</p>
+        </div>
+    </section>
+
+
+
+    <section class="mission-vision">
+        <div class="container">
+            <div class="mv-grid">
+                <div class="mv-card"><h2>Our Mission</h2><p>Our mission is to make finding rental homes and rooms simple, safe, and accessible for everyone. We aim to connect property owners and tenants through a reliable digital platform where users can easily search for suitable accommodations based on their preferred location and needs. By combining user-friendly technology with transparency and trust, we strive to reduce the difficulties people face while searching for rental properties. Our platform also focuses on improving communication and security between owners and tenants, creating a smarter and more dependable renting experience for all.</p></div>
+                <div class="mv-card"><h2>Our Vision</h2><p>At Spot My Stayy, our vision is to redefine the future of property rental through innovative, sustainable, and accessible solutions. We aim to create experiences that not only inspire but also contribute to the well-being of communities.</p><ul><li><i class="fas fa-drafting-compass"></i> Inspiring Modern Living Spaces</li><li><i class="fas fa-seedling"></i> Pioneering Sustainable Rentals</li><li><i class="fas fa-chart-line"></i> Empowering Local Economies</li></ul></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="project-description">
+        <div class="container"><div class="project-card"><h2>📌 About the Project</h2><p>This project is a web-based Rent House/Room Finder System designed to help users easily search for rental houses and rooms according to their preferred location and budget. Property owners can create listings with details such as rent, location, room type, and contact information, while users can browse and compare available properties in a simple and user-friendly interface. The platform aims to reduce the time and effort required in finding suitable rental accommodations.</p></div></div>
+    </section>
+
+    <section class="how-we-work"><div class="container"><h2>How We Work</h2><p>We follow a collaborative and transparent process, ensuring clear communication and expert guidance at every stage. From initial search to final move‑in, we make renting simple, secure, and satisfying.</p></div></section>
+</main>
+
+<footer class="professional-footer">
+    <div class="footer-container">
+        <div class="footer-logo">
+            <img src="logo1.png" alt="Spot My Stayy" class="footer-logo-img">
+            <span>© 2026 Spot My Stayy. All rights reserved.</span>
+        </div>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="terms.html">Terms</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+    (function() {
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        if (!hamburger || !navLinks) return;
+        function closeMenu() { navLinks.classList.remove('active'); document.body.classList.remove('menu-open'); }
+        hamburger.addEventListener('click', function(e) { e.stopPropagation(); navLinks.classList.toggle('active'); document.body.classList.toggle('menu-open'); });
+        document.addEventListener('click', function(event) { if (navLinks.classList.contains('active') && !navLinks.contains(event.target) && !hamburger.contains(event.target)) closeMenu(); });
+        navLinks.addEventListener('click', function(e) { e.stopPropagation(); });
+    })();
+</script>
+
+<script type="module" src="js/core.js"></script>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
